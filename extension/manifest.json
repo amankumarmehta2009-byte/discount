@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "DISCOUNT \u2013 Smart Shopping Assistant",
+  "version": "0.1.0",
+  "description": "Compare prices, price history and offers while browsing supported shopping stores.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "sidePanel",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.amazon.in/*",
+    "https://www.flipkart.com/*",
+    "https://www.meesho.com/*",
+    "https://www.myntra.com/*",
+    "http://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "DISCOUNT"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.in/*",
+        "https://www.flipkart.com/*",
+        "https://www.meesho.com/*",
+        "https://www.myntra.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
